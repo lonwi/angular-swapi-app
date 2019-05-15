@@ -2,7 +2,7 @@
   "name": "angular-swapi-app",
   "version": "0.0.1",
   "author": "Wojciech Bubolka",
-  "homepage": "https://ionicframework.com/",
+  "homepage": "https://angular-swapi-app.lonwi.info",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
