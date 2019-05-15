@@ -14,9 +14,10 @@ Fan Chat
 
 ## Credits
 
+https://swapi.co
 https://www.themoviedb.org
 https://zeit.co
-https://swapi.co
+
 https://ionicframework.com
 https://thenounproject.com/
 
