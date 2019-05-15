@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "now-build": "ionic build --prod"
+    "now-build": "ng build --prod"
   },
   "private": true,
   "dependencies": {
