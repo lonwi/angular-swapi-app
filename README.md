@@ -19,7 +19,9 @@ https://www.themoviedb.org
 https://zeit.co
 
 https://ionicframework.com
-https://thenounproject.com/
+https://thenounproject.com
+
+Ucons Vectors Market from the Noun Project
 
 
 ## Resources
