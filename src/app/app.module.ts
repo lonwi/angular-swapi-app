@@ -12,7 +12,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -21,7 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     IonicStorageModule.forRoot({
       name: '_angularSwapiApp',
-    })
+    }),
   ],
   providers: [
     StatusBar,
