@@ -22,7 +22,8 @@
   <ion-grid padding fixed *ngIf="film && poster && filmExtra">
     <ion-row class="ion-align-items-stretch">
       <ion-col size="12" size-md="6">
-        <img [src]="poster" [alt]="film.title + ' movie poster'" />
+        <ion-img [src]="posters[i]"></ion-img>
+        <!-- <img [src]="poster" [alt]="film.title + ' movie poster'" /> -->
       </ion-col>
       <ion-col size="12" size-md="6" padding>
         <h1 no-margin>{{filmExtra.original_title}}</h1>
@@ -33,19 +34,19 @@
       </ion-col>
     </ion-row>
     <ion-row class="ion-align-items-stretch">
-        <ion-col size="12" size-md="4" padding>
-          <strong>Characters:</strong>
-        </ion-col>
-        <ion-col size="12" size-md="8" padding>
-          
-        </ion-col>
-      </ion-row>
+      <ion-col size="12" size-md="4" padding>
+        <strong>Characters:</strong>
+      </ion-col>
+      <ion-col size="12" size-md="8" padding>
+
+      </ion-col>
+    </ion-row>
     <ion-row class="ion-align-items-stretch">
       <ion-col size="12" size-md="4" padding>
         <strong>Planets</strong>
       </ion-col>
       <ion-col size="12" size-md="8" padding>
-        
+
       </ion-col>
     </ion-row>
   </ion-grid>
