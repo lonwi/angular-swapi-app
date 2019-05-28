@@ -54,8 +54,14 @@ export class SwapiService {
       console.log('error', e);
     }
   }
-  getPerson(id: string) {
-
+  async getPerson(id: string): Promise<any> {
+    try {
+      const endpoint = await this.api.getEndpoint(this.baseUrl, 'people/' + id);
+      const respone = await this.get(endpoint);
+      return respone;
+    } catch (e) {
+      console.log('error', e);
+    }
   }
   async getPlanets(url?: string): Promise<any> {
     try {
@@ -66,8 +72,14 @@ export class SwapiService {
       console.log('error', e);
     }
   }
-  getPlanete(id: string) {
-
+  async getPlanete(id: string): Promise<any> {
+    try {
+      const endpoint = await this.api.getEndpoint(this.baseUrl, 'planets/' + id);
+      const respone = await this.get(endpoint);
+      return respone;
+    } catch (e) {
+      console.log('error', e);
+    }
   }
   async getSpecies(url?: string): Promise<any> {
     try {
@@ -78,8 +90,14 @@ export class SwapiService {
       console.log('error', e);
     }
   }
-  getSpecie(id: string) {
-
+  async getSpecie(id: string): Promise<any> {
+    try {
+      const endpoint = await this.api.getEndpoint(this.baseUrl, 'species/' + id);
+      const respone = await this.get(endpoint);
+      return respone;
+    } catch (e) {
+      console.log('error', e);
+    }
   }
   async getStarships(url?: string): Promise<any> {
     try {
@@ -90,8 +108,14 @@ export class SwapiService {
       console.log('error', e);
     }
   }
-  getStarship(id: string) {
-
+  async getStarship(id: string): Promise<any> {
+    try {
+      const endpoint = await this.api.getEndpoint(this.baseUrl, 'starships/' + id);
+      const respone = await this.get(endpoint);
+      return respone;
+    } catch (e) {
+      console.log('error', e);
+    }
   }
   async getVehicles(url?: string): Promise<any> {
     try {
@@ -102,8 +126,14 @@ export class SwapiService {
       console.log('error', e);
     }
   }
-  getVehicle(id: string) {
-
+  async getVehicle(id: string): Promise<any> {
+    try {
+      const endpoint = await this.api.getEndpoint(this.baseUrl, 'vehicles/' + id);
+      const respone = await this.get(endpoint);
+      return respone;
+    } catch (e) {
+      console.log('error', e);
+    }
   }
   async getId(endpoint: string) {
     const parts = await endpoint.split('/');
