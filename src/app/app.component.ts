@@ -13,13 +13,13 @@ export class AppComponent {
 
   public sidemenuPages: Array<SidemenuPages> = [
     {
-      title: 'Films',
-      url: '/films',
+      title: 'Movies',
+      url: '/movies',
       icon: ''
     },
     {
-      title: 'People',
-      url: '/people',
+      title: 'Characters',
+      url: '/characters',
       icon: ''
     },
     {
