@@ -1,14 +1,39 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      People
+      Characters
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid padding *ngIf="!people">
+    <ion-row justify-content-center align-items-center>
+      <ion-col class="ion-text-center">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="people">
+
+    <ion-item *ngFor="let person of people; let i=index;">
+      <ion-avatar slot="start">
+        <ion-img [src]="getAvatar(person)"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        {{person.name}}
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-infinite-scroll *ngIf="people" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingText="Loading Characters...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>
