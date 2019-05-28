@@ -4,29 +4,38 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Films
+      Movies
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-grid padding *ngIf="!films">
+    <ion-row justify-content-center align-items-center>
+      <ion-col class="ion-text-center">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-list *ngIf="films">
     <ion-grid fixed>
       <ion-row class="ion-align-items-stretch">
         <ion-col size="12" size-md="6" *ngFor="let film of films; let i=index;">
-          <ion-card class="film-card" routerLink="/films/{{film.episode_id}}">
-            <img [src]="posters[i]" [alt]="film.title + ' movie poster'" />         
+          <ion-card class="film-card" routerLink="/films/{{film.url | idFromUrl}}">
+            <img [src]="posters[i]" [alt]="film.title + ' movie poster'" />
             <ion-card-header>
               <ion-card-subtitle>Episode {{film.episode_id}}</ion-card-subtitle>
-              <ion-card-title>{{film.title}}</ion-card-title>
-
+              <ion-card-title color="light">{{film.title}}</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-
+                Release Date: {{film.release_date | date:'d MMMM y'}}
             </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-list>
+
 </ion-content>

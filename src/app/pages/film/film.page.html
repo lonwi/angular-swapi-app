@@ -1,9 +1,53 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>film</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/films"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ng-container *ngIf="film">{{film.title}}</ng-container>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-grid padding *ngIf="!film">
+    <ion-row justify-content-center align-items-center>
+      <ion-col class="ion-text-center">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid padding fixed *ngIf="film && poster && filmExtra">
+    <ion-row class="ion-align-items-stretch">
+      <ion-col size="12" size-md="6">
+        <img [src]="poster" [alt]="film.title + ' movie poster'" />
+      </ion-col>
+      <ion-col size="12" size-md="6" padding>
+        <h1 no-margin>{{filmExtra.original_title}}</h1>
+        <div margin-top><strong>Directed By:</strong> {{film.director}}</div>
+        <div><strong>Produced By:</strong> {{film.producer}}</div>
+        <div><strong>Release Date:</strong> {{film.release_date | date:'d MMMM y'}}</div>
+        <p [innerHTML]="film.opening_crawl | newLine"></p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-stretch">
+        <ion-col size="12" size-md="4" padding>
+          <strong>Characters</strong>
+        </ion-col>
+        <ion-col size="12" size-md="8" padding>
+          
+        </ion-col>
+      </ion-row>
+    <ion-row class="ion-align-items-stretch">
+      <ion-col size="12" size-md="4" padding>
+        <strong>Planets</strong>
+      </ion-col>
+      <ion-col size="12" size-md="8" padding>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
