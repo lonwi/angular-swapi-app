@@ -24,6 +24,10 @@
       "dest": "/ngsw-worker.js"
     },
     {
+      "src": "/manifest.json",
+      "dest": "/manifest.json"
+    },
+    {
       "src": "/(.*).html",
       "headers": {
         "cache-control": "public,max-age=0,must-revalidate"
