@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { ApiResponse } from 'src/app/interfaces/api-response';
-// import { People } from 'src/app/interfaces/people';
-import { Person } from 'src/app/interfaces/person';
+import { ApiResponseObject } from 'src/app/interfaces/api-response';
+import { PersonObject } from 'src/app/interfaces/person';
+import { SpecieObject } from 'src/app/interfaces/specie';
 
 import { AVATARS } from 'src/app/avatars';
+
 
 @Component({
   selector: 'app-people',
@@ -16,8 +17,8 @@ export class PeoplePage implements OnInit, OnDestroy {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  apiResonse: ApiResponse;
-  people: Person[];
+  apiResonse: ApiResponseObject;
+  people: PersonObject[];
 
   constructor(
     private swapi: SwapiService,
@@ -35,30 +36,29 @@ export class PeoplePage implements OnInit, OnDestroy {
     this.getApiData().then((res) => {
       if (res) {
         this.apiResonse = res;
-        
         if (!this.people) {
           this.people = [];
         }
         Promise.all(
           res.results
             .map(async (item) => {
-              item = await this.getSpecie(item);
+              item.species = await this.getSpecie(item);
+              return item;
             }),
-        ).then(() => this.people = this.people.concat(res.results));
-
-        this.people = this.people.concat(res.results);
-        console.log(this.people);
-        if (event) {
-          this.infiniteScroll.complete();
-          if (!this.apiResonse.next) {
-            this.infiniteScroll.disabled = true;
+        ).then(() => {
+          this.people = this.people.concat(res.results);
+          if (event) {
+            this.infiniteScroll.complete();
+            if (!this.apiResonse.next) {
+              this.infiniteScroll.disabled = true;
+            }
           }
-        }
+        });
       }
     });
   }
 
-  async getApiData(): Promise<ApiResponse> {
+  async getApiData(): Promise<ApiResponseObject> {
     try {
       const next = this.apiResonse ? this.apiResonse.next : '';
       return await this.swapi.getPeople(next);
@@ -67,26 +67,20 @@ export class PeoplePage implements OnInit, OnDestroy {
     }
   }
 
-  getAvatar(character: Person) {
+  getAvatar(character: PersonObject): string {
     const avatar = AVATARS.find((item) => character.name === item.name);
     return avatar.photo ? avatar.photo : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==';
-    // let index = character.url.split('/')[5];
-    // index = parseInt(index) - 1;
-    // return AVATARS[index] ? AVATARS[index].photo : '';
   }
 
-  async getSpecie(character: Person) {
+  async getSpecie(character: PersonObject): Promise<Array<SpecieObject>> {
     try {
-      // const next = this.apiResonse ? this.apiResonse.next : '';
-      Promise.all(
+      const species = await Promise.all(
         character.species
           .map(async (item) => {
             return await this.swapi.get(item);
           }),
       );
-
-      return character;
-
+      return species;
     } catch (e) {
       console.log('error', e);
     }
