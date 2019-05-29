@@ -35,10 +35,19 @@ export class PeoplePage implements OnInit, OnDestroy {
     this.getApiData().then((res) => {
       if (res) {
         this.apiResonse = res;
+        
         if (!this.people) {
           this.people = [];
         }
+        Promise.all(
+          res.results
+            .map(async (item) => {
+              item = await this.getSpecie(item);
+            }),
+        ).then(() => this.people = this.people.concat(res.results));
+
         this.people = this.people.concat(res.results);
+        console.log(this.people);
         if (event) {
           this.infiniteScroll.complete();
           if (!this.apiResonse.next) {
@@ -64,6 +73,23 @@ export class PeoplePage implements OnInit, OnDestroy {
     // let index = character.url.split('/')[5];
     // index = parseInt(index) - 1;
     // return AVATARS[index] ? AVATARS[index].photo : '';
+  }
+
+  async getSpecie(character: Person) {
+    try {
+      // const next = this.apiResonse ? this.apiResonse.next : '';
+      Promise.all(
+        character.species
+          .map(async (item) => {
+            return await this.swapi.get(item);
+          }),
+      );
+
+      return character;
+
+    } catch (e) {
+      console.log('error', e);
+    }
   }
 
 }
