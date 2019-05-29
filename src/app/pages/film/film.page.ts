@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Film } from 'src/app/interfaces/film';
-import { TmdbSearch, TmdbConfig, TmdbSearchResult } from 'src/app/interfaces/tmdb';
+import { FilmObject } from 'src/app/interfaces/film';
+import { TmdbSearchObject, TmdbConfigObject, TmdbSearchResultObject } from 'src/app/interfaces/tmdb';
 
 import { SwapiService } from 'src/app/services/swapi.service';
 import { TmdbService } from 'src/app/services/tmdb.service';
@@ -15,8 +15,8 @@ import { TmdbService } from 'src/app/services/tmdb.service';
 export class FilmPage implements OnInit {
 
   id: string;
-  film: Film;
-  filmExtra: TmdbSearchResult;
+  film: FilmObject;
+  filmExtra: TmdbSearchResultObject;
   poster: string;
 
   constructor(
@@ -39,20 +39,20 @@ export class FilmPage implements OnInit {
     console.log(this.filmExtra);
   }
 
-  async getFilmImage(film: Film): Promise<string> {
+  async getFilmImage(film: FilmObject): Promise<string> {
     try {
-      const response: TmdbSearch = await this.tmdb.search(film.title);
+      const response: TmdbSearchObject = await this.tmdb.search(film.title);
       const results = await response.results.sort((a, b) => b.vote_count - a.vote_count);
-      const config: TmdbConfig = await this.tmdb.configuration();
+      const config: TmdbConfigObject = await this.tmdb.configuration();
       const poster = await config.images.secure_base_url + 'w780' + results[0].poster_path;
       return poster;
     } catch (e) {
       console.log('error', e);
     }
   }
-  async getFilmExtraData(film: Film): Promise<TmdbSearchResult> {
+  async getFilmExtraData(film: FilmObject): Promise<TmdbSearchResultObject> {
     try {
-      const response: TmdbSearch = await this.tmdb.search(film.title);
+      const response: TmdbSearchObject = await this.tmdb.search(film.title);
       const results = await response.results.sort((a, b) => b.vote_count - a.vote_count);
       const result = await results[0];
       return result;
