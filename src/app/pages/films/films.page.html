@@ -23,7 +23,7 @@
     <ion-grid fixed>
       <ion-row class="ion-align-items-stretch">
         <ion-col size="12" size-md="6" *ngFor="let film of films; let i=index;">
-          <ion-card class="film-card" routerLink="/movies/{{film.url | idFromUrl}}">
+          <ion-card class="film-card" routerLink="/movies/{{film.url | idFromUrl}}" routerDirection="forward">
             <!-- <img [src]="posters[i]" [alt]="film.title + ' movie poster'" /> -->
             <ion-img [src]="posters[i]"></ion-img>
             <ion-card-header>
