@@ -1,8 +1,8 @@
-import { Person } from './person';
+import { PersonObject } from './person';
 
-export interface People {
+export interface PeopleObject {
     count: number;
     next: string | null;
     previous: string | null;
-    results: Person[];
+    results: PersonObject[];
 }

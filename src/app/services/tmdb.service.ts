@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { TmdbConfig, TmdbSearch } from '../interfaces/tmdb';
+import { TmdbConfigObject, TmdbSearchObject } from '../interfaces/tmdb';
 import { Storage } from '@ionic/storage';
 
 @Injectable({
@@ -32,7 +32,7 @@ export class TmdbService {
     }
   }
 
-  async search(query: string, year?: string): Promise<TmdbSearch> {
+  async search(query: string, year?: string): Promise<TmdbSearchObject> {
     try {
       const endpoint = await this.api.getEndpoint(this.baseUrl, 'search/movie');
       const options = {
@@ -50,7 +50,7 @@ export class TmdbService {
     }
   }
 
-  async configuration(): Promise<TmdbConfig> {
+  async configuration(): Promise<TmdbConfigObject> {
     try {
       const endpoint = await this.api.getEndpoint(this.baseUrl, 'configuration');
       const options = {
@@ -58,12 +58,6 @@ export class TmdbService {
           api_key: this.apiKey,
         }
       };
-      // if (this.config) {
-      //   return await this.config;
-      // } else {
-      //   return await this.api.get(endpoint, options).then((config) => this.config = config);
-      // }
-      // const respone = await this.config ? this.config : this.api.get(endpoint, options).then((config) => this.config = config);
       const respone = await this.get(endpoint, options);
       return respone;
     } catch (e) {

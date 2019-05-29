@@ -1,12 +1,12 @@
-export interface TmdbSearch {
+export interface TmdbSearchObject {
     title: string;
-    results: Array<TmdbSearchResult>;
+    results: Array<TmdbSearchResultObject>;
     total_pages: number;
     total_results: number;
 
 }
 
-export interface TmdbSearchResult {
+export interface TmdbSearchResultObject {
     vote_count: number;
     id: number;
     video: boolean;
@@ -23,7 +23,7 @@ export interface TmdbSearchResult {
     release_date: string;
 }
 
-export interface TmdbConfig {
+export interface TmdbConfigObject {
     change_keys: string[];
     images: {
         base_url: string;

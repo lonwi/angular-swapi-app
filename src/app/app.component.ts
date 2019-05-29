@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { SidemenuPages } from './interfaces/sidemenu-pages';
+import { SidemenuPagesObject } from './interfaces/sidemenu-pages';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { SidemenuPages } from './interfaces/sidemenu-pages';
 })
 export class AppComponent {
 
-  public sidemenuPages: Array<SidemenuPages> = [
+  public sidemenuPages: Array<SidemenuPagesObject> = [
     {
       title: 'Movies',
       url: '/movies',

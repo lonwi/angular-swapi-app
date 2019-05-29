@@ -1,8 +1,8 @@
-import { Film } from './film';
+import { FilmObject } from './film';
 
-export interface Films {
+export interface FilmsObject {
     count: number;
     next: string | null;
     previous: string | null;
-    results: Array<Film>;
+    results: Array<FilmObject>;
 }
