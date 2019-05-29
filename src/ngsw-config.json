@@ -20,11 +20,6 @@
         "files": [
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
-        ],
-        "urls": [
-          "angular-swapi-app-git-master.lonwi.now.sh/**",
-          "angular-swapi-app.lonwi.info/**",
-          "angular-swapi-app.lonwi.now.sh/**"
         ]
       }
     }
