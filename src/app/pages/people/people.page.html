@@ -18,7 +18,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-list *ngIf="people">
+  <ion-list #peopleList *ngIf="people">
 
     <ion-item *ngFor="let person of people; let i=index;" routerLink="/characters/{{person.url | idFromUrl}}" routerDirection="forward">
       <ion-avatar slot="start">

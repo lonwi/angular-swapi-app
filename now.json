@@ -1,28 +1,41 @@
 {
-    "version": 2,
-    "name": "angular-swapi-app",
-    "alias": "angular-swapi-app.lonwi.info",
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@now/static-build"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(assets/.+|svg/.+|.+\\.css|.+\\.js)",
-        "headers": { "cache-control": "max-age=31536000,immutable" },
-        "dest": "/$1"
+  "version": 2,
+  "name": "angular-swapi-app",
+  "alias": "angular-swapi-app.lonwi.info",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(assets/.+|svg/.+|.+\\.css|.+\\.js)",
+      "headers": {
+        "cache-control": "max-age=31536000,immutable"
       },
-      {
-        "src": "/(.*).html",
-        "headers": { "cache-control": "public,max-age=0,must-revalidate" },
-        "dest": "/$1.html"
+      "dest": "/$1"
+    },
+    {
+      "src": "/ngsw-worker.js",
+      "headers": {
+        "cache-control": "public,max-age=0,must-revalidate"
       },
-      {
-        "src": "/(.*)",
-        "headers": { "cache-control": "public,max-age=0,must-revalidate" },
-        "dest": "/index.html"
-      }
-    ]
-  }
+      "dest": "/ngsw-worker.js"
+    },
+    {
+      "src": "/(.*).html",
+      "headers": {
+        "cache-control": "public,max-age=0,must-revalidate"
+      },
+      "dest": "/$1.html"
+    },
+    {
+      "src": "/(.*)",
+      "headers": {
+        "cache-control": "public,max-age=0,must-revalidate"
+      },
+      "dest": "/index.html"
+    }
+  ]
+}
