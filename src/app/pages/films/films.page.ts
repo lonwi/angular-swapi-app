@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { SwapiService } from 'src/app/services/swapi.service';
 import { TmdbService } from 'src/app/services/tmdb.service';
-import { ApiResponse } from 'src/app/interfaces/api-response';
-import { Film } from 'src/app/interfaces/film';
-import { TmdbSearch, TmdbConfig } from 'src/app/interfaces/tmdb';
+import { ApiResponseObject } from 'src/app/interfaces/api-response';
+import { FilmObject } from 'src/app/interfaces/film';
+import { TmdbSearchObject, TmdbConfigObject } from 'src/app/interfaces/tmdb';
 
 @Component({
   selector: 'app-films',
@@ -15,8 +15,8 @@ export class FilmsPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  apiResonse: ApiResponse;
-  films: Film[];
+  apiResonse: ApiResponseObject;
+  films: FilmObject[];
   posters: string[] = [];
 
   constructor(
@@ -47,7 +47,7 @@ export class FilmsPage implements OnInit {
     });
   }
 
-  async getApiData(): Promise<ApiResponse> {
+  async getApiData(): Promise<ApiResponseObject> {
     try {
       const next = this.apiResonse ? this.apiResonse.next : '';
       return await this.swapi.getFilms(next);
@@ -56,11 +56,11 @@ export class FilmsPage implements OnInit {
     }
   }
 
-  async getFilmImage(film: Film): Promise<string> {
+  async getFilmImage(film: FilmObject): Promise<string> {
     try {
-      const response: TmdbSearch = await this.tmdb.search(film.title);
+      const response: TmdbSearchObject = await this.tmdb.search(film.title);
       const results = await response.results.sort((a, b) => b.vote_count - a.vote_count);
-      const config: TmdbConfig = await this.tmdb.configuration();
+      const config: TmdbConfigObject = await this.tmdb.configuration();
       const poster = await config.images.secure_base_url + 'w780' + results[0].poster_path;
       return poster;
     } catch (e) {
