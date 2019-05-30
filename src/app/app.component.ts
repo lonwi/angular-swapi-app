@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { MenuController, NavController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SidemenuPagesObject } from './interfaces/sidemenu-pages';
@@ -45,6 +45,8 @@ export class AppComponent {
   ]
 
   constructor(
+    private menuCtrl: MenuController,
+    private navCtrl: NavController,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
@@ -58,4 +60,11 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+  goToHome() {
+    this.navCtrl.navigateRoot('/welcome').then(() => {
+      this.menuCtrl.close();
+    });
+  }
+
 }
