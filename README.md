@@ -28,6 +28,8 @@ https://thenounproject.com/vectorspoint/collection/star-wars-glyph-icons/
 
 ## Resources
 
+https://dev.to/christopherkade/developing-the-star-wars-opening-crawl-in-htmlcss-2j9e
+
 https://github.com/yannbf/may-the-4th
 https://github.com/lorilewis/ionic4-starwars
 
