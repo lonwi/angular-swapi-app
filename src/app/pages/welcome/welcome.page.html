@@ -1,40 +1,53 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button color="primary"></ion-menu-button>
-        </ion-buttons>
-        <ion-title>
-        </ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-    <ion-grid padding>
+  <span *ngFor="let star of stars;" [ngStyle]="{'top': star.top +'px', 'left': star.left +'px'}" class="star"></span>
+  <ion-grid padding>
 
-        <ion-row justify-content-center align-items-center class="intro">
-            <ion-col text-center>
-                <ion-text color="secondary">
-                    <h1>A long time ago in a galaxy not....<br />far, far away....</h1>
-                </ion-text>
-            </ion-col>
-        </ion-row>
+    <ion-row justify-content-center align-items-center class="intro">
+      <ion-col text-center>
+        <ion-text color="secondary">
+          <h1>A long time ago in a galaxy....<br />not.... far, far away....</h1>
+        </ion-text>
+      </ion-col>
+    </ion-row>
 
-        <ion-row justify-content-center align-items-center class="logo">
-            <ion-col text-center>
-                <img src="../../../assets/sw-logo.svg" alt="Star Wars Logo" />
-            </ion-col>
-        </ion-row>
+    <ion-row justify-content-center align-items-center class="logo">
+      <ion-col text-center>
+        <img src="../../../assets/sw-logo.svg" alt="Star Wars Logo" />
+      </ion-col>
+    </ion-row>
 
-        <ion-row justify-content-center align-items-center class="content">
-            <ion-col text-center>
-                <ion-text color="primary">
-                    <h3>
-                        Powstał projekt końcowy dla studiów podyplomowych "Programista Front-end" na WSB Wrocław
-                        "Aplikacja internetowa z użyciem rest-api"....
-                    </h3>
-                </ion-text>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+    <ion-row justify-content-center align-items-center class="content">
+      <ion-col text-center>
+        <ion-text color="primary">
+          <p>
+            Powstał projekt końcowy dla studiów podyplomowych "Programista Front-end" na WSB Wrocław
+            "Aplikacja internetowa z użyciem rest-api"....
+          </p>
+          <p>Do stworzeniena aplikacji wykorzystałem Ionic Framework + Angular 7.</p>
+          <p>Jako REST API wykorzystałem swapi.co oraz themoviedb.org.</p>
+          <p>Aplikacja wykonołem jako PWA a więc można ją zainstalować na urządzeniach mobilnych oraz niektórych
+            przeglądarkach desktopych.</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-center align-items-center class="final">
+      <ion-col text-center>
+        <img src="../../../assets/sw-logo.svg" alt="Star Wars Logo" />
+        <h2>Star Wars Database</h2>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>
