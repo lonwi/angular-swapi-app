@@ -1,14 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Spiecies
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button color="primary"></ion-menu-button>
+      </ion-buttons>
+      <ion-title color="primary">
+        Species
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-grid padding *ngIf="!species">
+      <ion-row justify-content-center align-items-center>
+        <ion-col class="ion-text-center">
+          <ion-spinner color="primary"></ion-spinner>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-list #speciesList *ngIf="species">
+  
+      <ion-item *ngFor="let specie of species; let i=index;" routerLink="/species/{{specie.url | idFromUrl}}"
+        routerDirection="forward" detail>
+        <ion-label>
+          <strong>{{specie.name}} </strong>
+        </ion-label>
+      </ion-item>
+  
+    </ion-list>
+  
+    <ion-infinite-scroll *ngIf="species" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loadingText="Loading Species...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  
+  </ion-content>

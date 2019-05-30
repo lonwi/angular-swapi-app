@@ -20,13 +20,16 @@
 
   <ion-list #peopleList *ngIf="people">
 
-    <ion-item *ngFor="let person of people; let i=index;" routerLink="/characters/{{person.url | idFromUrl}}" routerDirection="forward">
+    <ion-item *ngFor="let person of people; let i=index;" routerLink="/characters/{{person.url | idFromUrl}}"
+      routerDirection="forward" detail>
       <ion-avatar slot="start">
         <ion-img [src]="getAvatar(person)"></ion-img>
       </ion-avatar>
       <ion-label>
         <strong>{{person.name}} </strong>
-        <ng-container *ngIf="person.species?.length > 0">(<span *ngFor="let specie of person.species; let i=index;"><ng-container *ngIf="i > 0">, </ng-container>{{specie.name}}</span>)</ng-container>
+        <ng-container *ngIf="person.species?.length > 0">(<span *ngFor="let specie of person.species; let i=index;">
+            <ng-container *ngIf="i > 0">, </ng-container>{{specie.name}}
+          </span>)</ng-container>
       </ion-label>
     </ion-item>
 

@@ -4,11 +4,34 @@
       <ion-menu-button color="primary"></ion-menu-button>
     </ion-buttons>
     <ion-title color="primary">
-      Spiecies
+      Planets
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid padding *ngIf="!planets">
+    <ion-row justify-content-center align-items-center>
+      <ion-col class="ion-text-center">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list #planetsList *ngIf="planets">
+
+    <ion-item *ngFor="let planet of planets; let i=index;" routerLink="/planets/{{planet.url | idFromUrl}}"
+      routerDirection="forward" detail>
+      <ion-label>
+        <strong>{{planet.name}} </strong>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-infinite-scroll *ngIf="planets" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingText="Loading Planets...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>
