@@ -28,7 +28,6 @@ export class FilmPage implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
     this.loadData();
-    console.log(this.id);
   }
 
   async loadData() {
