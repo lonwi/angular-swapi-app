@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button color="primary"></ion-menu-button>
@@ -8,7 +8,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+
+  <div class="fade"></div>
 
   <span *ngFor="let star of stars;" [ngStyle]="{'top': star.top +'px', 'left': star.left +'px'}" class="star"></span>
   <ion-grid padding>
@@ -16,7 +18,7 @@
     <ion-row justify-content-center align-items-center class="intro">
       <ion-col text-center>
         <ion-text color="secondary">
-          <h1>A long time ago in a galaxy....<br />not.... far, far away....</h1>
+          <h1>A short time ago in a galaxy....<br />not so far, far away....</h1>
         </ion-text>
       </ion-col>
     </ion-row>
@@ -30,14 +32,17 @@
     <ion-row justify-content-center align-items-center class="content">
       <ion-col text-center>
         <ion-text color="primary">
-          <p>
-            Powstał projekt końcowy dla studiów podyplomowych "Programista Front-end" na WSB Wrocław
-            "Aplikacja internetowa z użyciem rest-api"....
-          </p>
-          <p>Do stworzeniena aplikacji wykorzystałem Ionic Framework + Angular 7.</p>
-          <p>Jako REST API wykorzystałem swapi.co oraz themoviedb.org.</p>
-          <p>Aplikacja wykonołem jako PWA a więc można ją zainstalować na urządzeniach mobilnych oraz niektórych
-            przeglądarkach desktopych.</p>
+          <p>Nastał czas aby stworzyć projekt końcowy. Laptopy dzielnie znoszą wielogodzinne obciązenie, ale studenci
+            powoli już się poddają. Dzięki pomocy wykładowców istnieje jednak szansza że wszyscy skończą projekty
+            na czas.</p>
+          <p>Szpiedy wykradli tajne dane z baz swapi.co oraz themoviedb.org, dzięki którym przy wykorzystaniu nowych
+            technologi takich jak Ionic Framework, Angular 7 z chaosu powstał tajemniczy projekt końcowy dla studiów
+            podyplomowych "Programista Front-end" na WSB Wrocław o kryptonimie "Aplikacja internetowa z użyciem REST API"....</p>
+          <p>Po wielu desperckich próbach udało się zmusić złowrogie siły zeit.co do prawidłowego działania a dzięku
+            zostosowaniu technologi PWA możliwe stało się niemożliwe, czyli zainstalowanie aplikacji na telefonie bez
+            udziału sklepu.</p>
+          <p>Chciałem podziękować wszystkim wykładowcom za bardzo interesujące zajęcia.</p>
+          <p>Wojciech Bubółka...</p>
         </ion-text>
       </ion-col>
     </ion-row>
@@ -45,7 +50,11 @@
     <ion-row justify-content-center align-items-center class="final">
       <ion-col text-center>
         <img src="../../../assets/sw-logo.svg" alt="Star Wars Logo" />
-        <h2>Star Wars Database</h2>
+        <ion-text color="primary">
+          <h2>Star Wars Database</h2>
+          <p>Projekt końcowy kierunku "Programista Front-end" na WSB Wrocław - Aplikacja internetowa z użyciem REST API.</p>
+          <p>Projekt oraz wykonanie: Wojciech Bubółka </p>
+        </ion-text>
       </ion-col>
     </ion-row>
 

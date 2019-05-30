@@ -1,8 +1,21 @@
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+}
+.fade {
+  position: absolute;
+  width: 100%;
+  min-height: 60vh;
+  top: -0;
+  background-image: linear-gradient(0deg, transparent, black 75%);
+  z-index: 1;
+}
 .star {
   position: absolute;
   width: 1px;
   height: 1px;
   background-color: white;
+  z-index: 1;
 }
 
 .intro {
@@ -10,7 +23,7 @@
   top: 45%;
   left: 0;
   z-index: 1;
-  animation: intro 6s ease-out 1s;
+  animation: intro 10s ease-out 1s;
   opacity: 0;
   width: 100%;
 }
@@ -22,7 +35,7 @@
   20% {
     opacity: 1;
   }
-  90% {
+  80% {
     opacity: 1;
   }
   100% {
@@ -36,7 +49,7 @@
   left: 0;
   z-index: 1;
   margin: auto;
-  animation: logo 9s ease-out 9s;
+  animation: logo 9s ease-out 11s;
   opacity: 0;
   width: 100%;
 }
@@ -56,9 +69,9 @@
 }
 
 .content {
-  animation: scroll 100s linear 16s;
+  animation: scroll 100s linear 17s;
   bottom: 0;
-  font-size: 350%;
+  font-size: 300%;
   font-weight: bold;
   left: 0;
   position: absolute;
@@ -67,6 +80,9 @@
   transform: perspective(300px) rotateX(25deg);
   transform-origin: 50% 100%;
   width: 100%;
+  p {
+    text-align: justify;
+  }
 }
 .content:after {
   position: absolute;
@@ -89,6 +105,8 @@
 .final {
   animation: final 2s both 116s;
   opacity: 0;
+  position: relative;
+  z-index: 1;
 }
 @keyframes final {
   from {
