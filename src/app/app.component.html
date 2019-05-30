@@ -3,7 +3,7 @@
     <ion-menu>
       <ion-header>
         <ion-toolbar>
-          <ion-title>Star Wars Database</ion-title>
+          <ion-title color="primary">Star Wars Database</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
@@ -11,7 +11,7 @@
           <ion-menu-toggle auto-hide="false" *ngFor="let p of sidemenuPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
+              <ion-label color="primary">
                 {{p.title}}
               </ion-label>
             </ion-item>
