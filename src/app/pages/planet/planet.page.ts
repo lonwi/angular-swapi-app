@@ -29,6 +29,7 @@ export class PlanetPage implements OnInit {
 
   async loadData() {
     this.planet = await this.swapi.getPlanet(this.id);
+
     const films: FilmObject[] = [];
     Promise.all(
       this.planet.films.map(async (item) => {
@@ -37,6 +38,7 @@ export class PlanetPage implements OnInit {
         return item;
       })
     ).then(() => this.films = films);
+
     const people: PersonObject[] = [];
     Promise.all(
       this.planet.residents.map(async (item) => {
@@ -45,6 +47,7 @@ export class PlanetPage implements OnInit {
         return item;
       })
     ).then(() => this.people = people);
+    
     console.log(this.planet);
     return this.planet;
   }
