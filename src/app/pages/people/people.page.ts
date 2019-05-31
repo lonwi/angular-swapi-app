@@ -38,7 +38,7 @@ export class PeoplePage implements OnInit, OnDestroy {
     const response = await this.getApiData();
     this.apiResonse = response;
     const people = await Promise.all(
-      this.apiResonse.results.map(async (item) => {
+      response.results.map(async (item) => {
         item.species = await this.getSpecie(item);
         return item;
       })
