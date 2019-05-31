@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PersonObject } from 'src/app/interfaces/person';
 import { SwapiService } from 'src/app/services/swapi.service';
+
 import { FilmObject } from 'src/app/interfaces/film';
+import { PersonObject } from 'src/app/interfaces/person';
+import { PlanetObject } from 'src/app/interfaces/planet';
+import { SpecieObject } from 'src/app/interfaces/specie';
+import { StarshipObject } from 'src/app/interfaces/starship';
+import { VehicleObject } from 'src/app/interfaces/vehicle';
 
 import { AVATARS } from 'src/app/avatars';
-import { PlanetObject } from 'src/app/interfaces/planet';
-import { VehicleObject } from 'src/app/interfaces/vehicle';
-import { StarshipObject } from 'src/app/interfaces/starship';
-import { SpecieObject } from 'src/app/interfaces/specie';
-
 @Component({
   selector: 'app-person',
   templateUrl: './person.page.html',
@@ -73,7 +73,7 @@ export class PersonPage implements OnInit {
         return item;
       })
     ).then(() => this.vehicles = vehicles);
-    
+
     const homeworld: PlanetObject = await this.swapi.get(this.person.homeworld);
     this.homeworld = homeworld;
 
