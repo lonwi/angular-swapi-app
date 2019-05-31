@@ -48,7 +48,7 @@ export class AppComponent {
       icon: '',
       src: '../../assets/menu/vehicles.svg',
     },
-  ]
+  ];
 
   constructor(
     private menuCtrl: MenuController,
