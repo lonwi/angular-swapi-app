@@ -14,6 +14,7 @@ Run npm install
 
 REST API Integration 
 Progressive Web App
+Zeit Integration
 
 ## Credits
 
