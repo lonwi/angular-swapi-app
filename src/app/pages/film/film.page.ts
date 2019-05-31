@@ -6,6 +6,10 @@ import { TmdbSearchObject, TmdbConfigObject, TmdbSearchResultObject } from 'src/
 
 import { SwapiService } from 'src/app/services/swapi.service';
 import { TmdbService } from 'src/app/services/tmdb.service';
+import { PlanetObject } from 'src/app/interfaces/planet';
+import { StarshipObject } from 'src/app/interfaces/starship';
+import { VehicleObject } from 'src/app/interfaces/vehicle';
+import { PersonObject } from 'src/app/interfaces/person';
 
 @Component({
   selector: 'app-film',
@@ -18,6 +22,10 @@ export class FilmPage implements OnInit {
   film: FilmObject;
   filmExtra: TmdbSearchResultObject;
   poster: string;
+  people: PersonObject[];
+  planets: PlanetObject[];
+  starships: StarshipObject[];
+  vehicles: VehicleObject[];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +42,43 @@ export class FilmPage implements OnInit {
     this.film = await this.swapi.getFilm(this.id);
     this.poster = await this.getFilmImage(this.film);
     this.filmExtra = await this.getFilmExtraData(this.film);
+
+    const people: PersonObject[] = [];
+    Promise.all(
+      this.film.characters.map(async (item) => {
+        const person = await this.swapi.get(item);
+        people.push(person);
+        return item;
+      })
+    ).then(() => this.people = people);
+
+    const planets: PlanetObject[] = [];
+    Promise.all(
+      this.film.planets.map(async (item) => {
+        const planet = await this.swapi.get(item);
+        planets.push(planet);
+        return item;
+      })
+    ).then(() => this.planets = planets);
+
+    const starships: StarshipObject[] = [];
+    Promise.all(
+      this.film.starships.map(async (item) => {
+        const starship = await this.swapi.get(item);
+        starships.push(starship);
+        return item;
+      })
+    ).then(() => this.starships = starships);
+
+    const vehicles: VehicleObject[] = [];
+    Promise.all(
+      this.film.vehicles.map(async (item) => {
+        const vehicle = await this.swapi.get(item);
+        vehicles.push(vehicle);
+        return item;
+      })
+    ).then(() => this.vehicles = vehicles);
+
     console.log(this.film);
     console.log(this.filmExtra);
   }

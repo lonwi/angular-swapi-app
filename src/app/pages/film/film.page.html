@@ -5,6 +5,7 @@
     </ion-buttons>
     <ion-title color="primary">
       <ng-container *ngIf="film">{{film.title}}</ng-container>
+      <ion-spinner *ngIf="!film" color="primary"></ion-spinner>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -20,34 +21,78 @@
   </ion-grid>
 
   <ion-grid padding *ngIf="film && poster && filmExtra">
-    <ion-row class="ion-align-items-stretch">
+    <ion-row>
       <ion-col size="12" size-md="6">
         <ion-img [src]="poster"></ion-img>
         <!-- <img [src]="poster" [alt]="film.title + ' movie poster'" /> -->
       </ion-col>
       <ion-col size="12" size-md="6" padding>
-        <h1 no-margin>{{filmExtra.original_title}}</h1>
-        <div margin-top><strong>Directed By:</strong> {{film.director}}</div>
-        <div><strong>Produced By:</strong> {{film.producer}}</div>
-        <div><strong>Release Date:</strong> {{film.release_date | date:'d MMMM y'}}</div>
+        <h1 no-margin>
+          <ion-text color="primary">{{filmExtra.original_title}}</ion-text>
+        </h1>
+        <div margin-top>
+          <ion-text color="secondary"><strong>Directed By: </strong></ion-text>{{film.director}}
+        </div>
+        <div>
+          <ion-text color="secondary"><strong>Produced By: </strong></ion-text>{{film.producer}}
+        </div>
+        <div>
+          <ion-text color="secondary"><strong>Release Date: </strong></ion-text>{{film.release_date | date:'d MMMM y'}}
+        </div>
         <p [innerHTML]="film.opening_crawl | newLine"></p>
       </ion-col>
     </ion-row>
-    <ion-row class="ion-align-items-stretch">
-      <ion-col size="12" size-md="4" padding>
-        <strong>Characters:</strong>
-      </ion-col>
-      <ion-col size="12" size-md="8" padding>
 
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-align-items-stretch">
-      <ion-col size="12" size-md="4" padding>
-        <strong>Planets</strong>
-      </ion-col>
-      <ion-col size="12" size-md="8" padding>
+    <ion-row>
 
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Related Characters:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!people" color="primary" class="ion-spinner-small"></ion-spinner>
+        <ng-container *ngIf="people">
+          <ng-container *ngFor="let person of people; let last = last;">
+            <a routerLink="/characters/{{person.url | idFromUrl}}" routerDirection="forward">
+              <ion-text text-capitalize>{{person.name}}</ion-text>
+            </a>
+            <ion-text *ngIf="!last">, </ion-text>
+          </ng-container>
+          <ng-container *ngIf="!people.length">
+            <ion-text>Unknown</ion-text>
+          </ng-container>
+        </ng-container>
       </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Related Starships:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!starships" color="primary" class="ion-spinner-small"></ion-spinner>
+        <ng-container *ngIf="starships">
+          <ng-container *ngFor="let starship of starships; let last = last;">
+            <a routerLink="/starships/{{starship.url | idFromUrl}}" routerDirection="forward">
+              <ion-text text-capitalize>{{starship.name}}</ion-text>
+            </a>
+            <ion-text *ngIf="!last">, </ion-text>
+          </ng-container>
+          <ng-container *ngIf="!starships.length">
+            <ion-text>Unknown</ion-text>
+          </ng-container>
+        </ng-container>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Related Vehicles:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!vehicles" color="primary" class="ion-spinner-small"></ion-spinner>
+        <ng-container *ngIf="vehicles">
+          <ng-container *ngFor="let vehicle of vehicles; let last = last;">
+            <a routerLink="/vehicles/{{vehicle.url | idFromUrl}}" routerDirection="forward">
+              <ion-text text-capitalize>{{vehicle.name}}</ion-text>
+            </a>
+            <ion-text *ngIf="!last">, </ion-text>
+          </ng-container>
+          <ng-container *ngIf="!vehicles.length">
+            <ion-text>Unknown</ion-text>
+          </ng-container>
+        </ng-container>
+      </ion-col>
+
     </ion-row>
   </ion-grid>
 
