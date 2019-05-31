@@ -72,7 +72,7 @@ export class SwapiService {
       console.log('error', e);
     }
   }
-  async getPlanete(id: string): Promise<any> {
+  async getPlanet(id: string): Promise<any> {
     try {
       const endpoint = await this.api.getEndpoint(this.baseUrl, 'planets/' + id);
       const respone = await this.get(endpoint);
