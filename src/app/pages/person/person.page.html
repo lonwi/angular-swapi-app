@@ -4,9 +4,9 @@
       <ion-back-button color="primary" defaultHref="/characters"></ion-back-button>
     </ion-buttons>
     <ion-title color="primary">
-        <ng-container *ngIf="person">{{person.name}}</ng-container>
-        <ion-spinner *ngIf="!person" color="primary"></ion-spinner>
-      </ion-title>
+      <ng-container *ngIf="person">{{person.name}}</ng-container>
+      <ion-spinner *ngIf="!person" color="primary"></ion-spinner>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -21,12 +21,124 @@
 
   <ion-grid padding *ngIf="person">
     <ion-row>
-
-      <ion-col size="12">
+      <ion-col size="12" align-self-center>
         <h1>
-          <ion-text color="primary"><strong>Person Name:&nbsp;</strong></ion-text>
+          <ion-avatar>
+            <ion-img [src]="getAvatar(person)"></ion-img>
+          </ion-avatar>
+          <ion-text color="primary"><strong>Name:&nbsp;</strong></ion-text>
           <ion-text>{{person.name}}</ion-text>
         </h1>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Birth Year:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{person.birth_year ? person.birth_year : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Eye Color:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{person.eye_color ? person.eye_color : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Gender:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{person.gender ? person.gender : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Hair Color:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{person.hair_color ? person.hair_color : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Height:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{isNumber(person.height) ? (person.height | number) + 'cm' : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Homeworld:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!homeworld" color="primary" class="ion-spinner-small"></ion-spinner>
+        <ng-container *ngIf="homeworld && homeworld.name">
+          <a routerLink="/planets/{{homeworld.url | idFromUrl}}" routerDirection="forward">
+            <ion-text>{{homeworld.name}}</ion-text>
+          </a>
+          <ion-text *ngIf="homeworld && !homeworld.name">Unknown</ion-text>
+        </ng-container>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Mass:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{isNumber(person.mass) ? (person.mass | number) + 'kg' : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Movie Appearance:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!films" color="primary" class="ion-spinner-small"></ion-spinner>
+        <ng-container *ngIf="films">
+          <ng-container *ngFor="let film of films; let last = last;">
+            <a routerLink="/movies/{{film.url | idFromUrl}}" routerDirection="forward">
+              <ion-text>{{film.title}}</ion-text>
+            </a>
+            <ion-text *ngIf="!last">, </ion-text>
+          </ng-container>
+          <ng-container *ngIf="!films.length">
+            <ion-text>Unknown</ion-text>
+          </ng-container>
+        </ng-container>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Skin Color:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{person.skin_color ? person.skin_color : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Specie:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!species" color="primary" class="ion-spinner-small"></ion-spinner>
+        <ng-container *ngIf="species">
+          <ng-container *ngFor="let specie of species; let last = last;">
+            <a routerLink="/species/{{specie.url | idFromUrl}}" routerDirection="forward">
+              <ion-text>{{specie.name}}</ion-text>
+            </a>
+            <ion-text *ngIf="!last">, </ion-text>
+          </ng-container>
+          <ng-container *ngIf="!species.length">
+            <ion-text>Unknown</ion-text>
+          </ng-container>
+        </ng-container>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Related Starships:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!starships" color="primary" class="ion-spinner-small"></ion-spinner>
+        <ng-container *ngIf="starships">
+          <ng-container *ngFor="let starship of starships; let last = last;">
+            <a routerLink="/starships/{{starship.url | idFromUrl}}" routerDirection="forward">
+              <ion-text>{{starship.name}}</ion-text>
+            </a>
+            <ion-text *ngIf="!last">, </ion-text>
+          </ng-container>
+          <ng-container *ngIf="!starships.length">
+            <ion-text>Unknown</ion-text>
+          </ng-container>
+        </ng-container>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Related Vehicles:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!vehicles" color="primary" class="ion-spinner-small"></ion-spinner>
+        <ng-container *ngIf="vehicles">
+          <ng-container *ngFor="let vehicle of vehicles; let last = last;">
+            <a routerLink="/vehicles/{{vehicle.url | idFromUrl}}" routerDirection="forward">
+              <ion-text>{{vehicle.name}}</ion-text>
+            </a>
+            <ion-text *ngIf="!last">, </ion-text>
+          </ng-container>
+          <ng-container *ngIf="!vehicles.length">
+            <ion-text>Unknown</ion-text>
+          </ng-container>
+        </ng-container>
       </ion-col>
 
     </ion-row>
