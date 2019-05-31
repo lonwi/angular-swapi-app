@@ -4,12 +4,32 @@
       <ion-back-button color="primary" defaultHref="/characters"></ion-back-button>
     </ion-buttons>
     <ion-title color="primary">
-      <ng-container>Person</ng-container>
-    </ion-title>
+        <ng-container *ngIf="person">{{person.name}}</ng-container>
+        <ion-spinner *ngIf="!person" color="primary"></ion-spinner>
+      </ion-title>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
+  <ion-grid padding *ngIf="!person">
+    <ion-row justify-content-center align-items-center>
+      <ion-col class="ion-text-center">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid padding *ngIf="person">
+    <ion-row>
+
+      <ion-col size="12">
+        <h1>
+          <ion-text color="primary"><strong>Person Name:&nbsp;</strong></ion-text>
+          <ion-text>{{person.name}}</ion-text>
+        </h1>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

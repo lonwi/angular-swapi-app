@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PersonObject } from 'src/app/interfaces/person';
 
 @Component({
   selector: 'app-person',
@@ -9,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PersonPage implements OnInit {
 
   id: string;
+  person: PersonObject;
 
   constructor(
     private route: ActivatedRoute,
