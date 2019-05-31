@@ -17,6 +17,13 @@
       "dest": "/$1"
     },
     {
+      "src": "/(.+\\.json)",
+      "headers": {
+        "cache-control": "public,max-age=0,must-revalidate"
+      },
+      "dest": "/$1"
+    },
+    {
       "src": "/ngsw-worker.js",
       "headers": {
         "cache-control": "public,max-age=0,must-revalidate"
