@@ -14,8 +14,8 @@ export class PlanetPage implements OnInit {
 
   id: string;
   planet: PlanetObject;
-  films: FilmObject[] = [];
-  people: PersonObject[] = [];
+  films: FilmObject[];
+  people: PersonObject[];
 
   constructor(
     private route: ActivatedRoute,
@@ -29,16 +29,22 @@ export class PlanetPage implements OnInit {
 
   async loadData() {
     this.planet = await this.swapi.getPlanete(this.id);
-    this.planet.films.map(async (item) => {
-      const film = await this.swapi.get(item);
-      this.films.push(film);
-      return item;
-    });
-    this.planet.residents.map(async (item) => {
-      const person = await this.swapi.get(item);
-      this.people.push(person);
-      return item;
-    });
+    const films: FilmObject[] = [];
+    Promise.all(
+      this.planet.films.map(async (item) => {
+        const film = await this.swapi.get(item);
+        films.push(film);
+        return item;
+      })
+    ).then(() => this.films = films);
+    const people: PersonObject[] = [];
+    Promise.all(
+      this.planet.residents.map(async (item) => {
+        const person = await this.swapi.get(item);
+        people.push(person);
+        return item;
+      })
+    ).then(() => this.people = people);
     console.log(this.planet);
     return this.planet;
   }
