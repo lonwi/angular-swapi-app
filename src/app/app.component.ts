@@ -15,32 +15,38 @@ export class AppComponent {
     {
       title: 'Movies',
       url: '/movies',
-      icon: ''
+      icon: 'film',
+      src: '',
     },
     {
       title: 'Characters',
       url: '/characters',
-      icon: ''
+      icon: '',
+      src: '../../assets/menu/characters.svg',
     },
     {
       title: 'Planets',
       url: '/planets',
-      icon: ''
+      icon: '',
+      src: '../../assets/menu/planets.svg',
     },
     {
       title: 'Species',
       url: '/species',
-      icon: ''
+      icon: '',
+      src: '../../assets/menu/species.svg',
     },
     {
       title: 'Starships',
       url: '/starships',
-      icon: ''
+      icon: '',
+      src: '../../assets/menu/starships.svg',
     },
     {
       title: 'Vehicles',
       url: '/vehicles',
-      icon: ''
+      icon: '',
+      src: '../../assets/menu/vehicles.svg',
     },
   ]
 

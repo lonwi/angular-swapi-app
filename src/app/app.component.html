@@ -9,8 +9,9 @@
       <ion-content>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of sidemenuPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" detail>
+              <ion-icon slot="start" *ngIf="p.icon" [name]="p.icon" color="primary"></ion-icon>
+              <ion-icon slot="start" *ngIf="p.src" [src]="p.src" color="primary"></ion-icon>
               <ion-label color="primary">
                 {{p.title}}
               </ion-label>
