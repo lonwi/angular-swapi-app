@@ -61,7 +61,7 @@
         <ion-spinner *ngIf="!homeworld" color="primary" class="ion-spinner-small"></ion-spinner>
         <ng-container *ngIf="homeworld && homeworld.name">
           <a routerLink="/planets/{{homeworld.url | idFromUrl}}" routerDirection="forward">
-            <ion-text>{{homeworld.name}}</ion-text>
+            <ion-text text-capitalize>{{homeworld.name}}</ion-text>
           </a>
           <ion-text *ngIf="homeworld && !homeworld.name">Unknown</ion-text>
         </ng-container>
