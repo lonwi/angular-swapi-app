@@ -48,7 +48,6 @@ export class PlanetPage implements OnInit {
       })
     ).then(() => this.people = people);
 
-    console.log(this.planet);
     return this.planet;
   }
 

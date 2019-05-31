@@ -49,8 +49,6 @@ export class VehiclePage implements OnInit {
         return item;
       })
     ).then(() => this.people = people);
-    
-    console.log(this.vehicle);
 
     return this.vehicle;
   }

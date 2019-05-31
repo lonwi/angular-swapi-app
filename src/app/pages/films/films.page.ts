@@ -33,7 +33,6 @@ export class FilmsPage implements OnInit {
       this.getApiData().then((res) => {
         if (res) {
           const films = res.results.sort((a, b) => a.episode_id - b.episode_id);
-          console.log(films);
           this.swapi.getId(films[0].url);
           Promise.all(
             films

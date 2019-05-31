@@ -55,7 +55,6 @@ export class SpeciePage implements OnInit {
     const homeworld: PlanetObject = await this.swapi.get(this.specie.homeworld);
     this.homeworld = homeworld;
 
-    console.log(this.specie);
     return this.specie;
   }
 

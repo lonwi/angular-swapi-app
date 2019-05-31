@@ -77,16 +77,6 @@ export class PersonPage implements OnInit {
     const homeworld: PlanetObject = await this.swapi.get(this.person.homeworld);
     this.homeworld = homeworld;
 
-    // const people: PersonObject[] = [];
-    // Promise.all(
-    //   this.planet.residents.map(async (item) => {
-    //     const person = await this.swapi.get(item);
-    //     people.push(person);
-    //     return item;
-    //   })
-    // ).then(() => this.people = people);
-
-    console.log(this.person);
     return this.person;
   }
 

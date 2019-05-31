@@ -23,4 +23,6 @@ https://www.themoviedb.org
 https://zeit.co
 
 https://ionicframework.com
+
+Icons by Vectors Point from the Noun Project
 https://thenounproject.com

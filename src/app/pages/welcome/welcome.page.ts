@@ -17,7 +17,7 @@ export class WelcomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getRandomStars().then(() => console.log(this.stars));
+    this.getRandomStars();
   }
 
   async getRandomStars(): Promise<Array<{ top: number, left: number }>> {
