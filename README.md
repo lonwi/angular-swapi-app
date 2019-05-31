@@ -1,4 +1,5 @@
 # Angular Star Wars API
+
 https://angular-swapi-app.lonwi.info/
 
 ## Installation
@@ -6,6 +7,7 @@ https://angular-swapi-app.lonwi.info/
 Run npm install
 
 ## App Features
+
 Firebase Integration 
 Avatar change
 Theme change
