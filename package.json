@@ -1,6 +1,6 @@
 {
   "name": "angular-swapi-app",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Wojciech Bubolka",
   "homepage": "https://angular-swapi-app.lonwi.info",
   "scripts": {
@@ -61,5 +61,5 @@
     "tslint": "^5.16.0",
     "typescript": "3.2.4"
   },
-  "description": "Angular Star Wars Database WSB Final Project"
+  "description": "Projekt końcowy kierunku \"Programista Front-end\" na WSB Wrocław - Aplikacja internetowa z użyciem REST API."
 }
