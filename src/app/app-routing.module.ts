@@ -16,8 +16,6 @@ const routes: Routes = [
   { path: 'vehicles', loadChildren: './pages/vehicles/vehicles.module#VehiclesPageModule' },
   { path: 'vehicles/:id', loadChildren: './pages/vehicle/vehicle.module#VehiclePageModule' },
   { path: 'welcome', loadChildren: './pages/welcome/welcome.module#WelcomePageModule' },
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
 ];
 
 @NgModule({
