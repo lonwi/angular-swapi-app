@@ -1,9 +1,137 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>starship</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/starships"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="primary">
+      <ng-container *ngIf="starship">{{starship.name}}</ng-container>
+      <ion-spinner *ngIf="!starship" color="primary"></ion-spinner>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid padding *ngIf="!starship">
+    <ion-row justify-content-center align-items-center>
+      <ion-col class="ion-text-center">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid padding *ngIf="starship">
+    <ion-row>
+
+      <ion-col size="12">
+        <h1>
+          <ion-text color="primary"><strong>Starship Name:&nbsp;</strong></ion-text>
+          <ion-text>{{starship.name}}</ion-text>
+        </h1>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Starship Class:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{starship.starship_class ? starship.starship_class : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Model:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{starship.model ? starship.model : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Manufacturer:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{starship.manufacturer ? starship.manufacturer : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Cost:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>
+          {{ isNumber(starship.cost_in_credits) ? (starship.cost_in_credits | number) + ' credits' : 'Unknown' }}
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Length:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>
+          {{ isNumber(starship.length) ? (starship.length | number) + 'm' : 'Unknown' }}
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Cargo Capacity:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>
+          {{ isNumber(starship.cargo_capacity) ? (starship.cargo_capacity | number) + 'kg' : 'Unknown' }}
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Consumables:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{starship.consumables ? starship.consumables : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Crew:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{starship.crew ? starship.crew : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Passengers:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{starship.passengers ? starship.passengers : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Hyperdrive Rating:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>{{starship.hyperdrive_rating ? starship.hyperdrive_rating : 'Unknown'}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Relative Sublight Speed:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>
+          {{ isNumber(starship.MGLT) ? (starship.MGLT | number) + ' MGLT' : 'Unknown' }}
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Max Atmosphering Speed:&nbsp;</strong></ion-text>
+        <ion-text text-capitalize>
+          {{ isNumber(starship.max_atmosphering_speed) ? (starship.max_atmosphering_speed | number) + 'kph' : 'Unknown' }}
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Movie Appearance:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!films" color="primary" class="ion-spinner-small"></ion-spinner>
+        <ng-container *ngIf="films">
+          <ng-container *ngFor="let film of films; let last = last;">
+            <a routerLink="/movies/{{film.url | idFromUrl}}" routerDirection="forward">
+              <ion-text>{{film.title}}</ion-text>
+            </a>
+            <ion-text *ngIf="!last">, </ion-text>
+          </ng-container>
+          <ng-container *ngIf="!films.length">
+            <ion-text>Unknown</ion-text>
+          </ng-container>
+        </ng-container>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Related Pilots:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!people" color="primary" class="ion-spinner-small"></ion-spinner>
+        <ng-container *ngIf="people">
+          <ng-container *ngFor="let person of people; let last = last;">
+            <a routerLink="/characters/{{person.url | idFromUrl}}" routerDirection="forward">
+              <ion-text>{{person.name}}</ion-text>
+            </a>
+            <ion-text *ngIf="!last">, </ion-text>
+          </ng-container>
+          <ng-container *ngIf="!people.length">
+            <ion-text>Unknown</ion-text>
+          </ng-container>
+        </ng-container>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
