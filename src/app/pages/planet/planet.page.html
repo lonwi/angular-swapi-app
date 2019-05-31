@@ -1,14 +1,75 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-back-button color="primary" defaultHref="/planets"></ion-back-button>
-        </ion-buttons>
-        <ion-title color="primary">
-            <ng-container *ngIf="planet">{{planet.name}}</ng-container>
-        </ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/planets"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="primary">
+      <ng-container *ngIf="planet">{{planet.name}}</ng-container>
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid padding *ngIf="!planet">
+    <ion-row justify-content-center align-items-center>
+      <ion-col class="ion-text-center">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid padding *ngIf="planet">
+    <ion-row>
+
+      <ion-col size="12">
+        <h1>
+          <ion-text color="primary"><strong>Planet Name:&nbsp;</strong></ion-text>
+          <ion-text color="primary">{{planet.name}}</ion-text>
+        </h1>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Climate:&nbsp;</strong></ion-text>
+        <ion-text>{{planet.climate}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Diameter:&nbsp;</strong></ion-text>
+        <ion-text>{{planet.diameter | number}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Gravity:&nbsp;</strong></ion-text>
+        <ion-text>{{planet.gravity}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Movie Appearance:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!films" color="primary"></ion-spinner>
+        <ng-container *ngIf="films">
+            <a *ngFor="let film of films;" routerLink="/movies/{{film.url | idFromUrl}}" routerDirection="forward"><ion-text>{{film.title}}</ion-text></a>
+        </ng-container>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Population:&nbsp;</strong></ion-text>
+        <ion-text>{{planet.population | number}}</ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Residents:&nbsp;</strong></ion-text>
+        <ion-spinner *ngIf="!people" color="primary"></ion-spinner>
+        <ng-container *ngIf="people">
+            <a *ngFor="let person of people;"><ion-text>{{person.name}}</ion-text></a>
+        </ng-container>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary"><strong>Terrain:&nbsp;</strong></ion-text>
+        <ion-text>{{planet.terrain}}</ion-text>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

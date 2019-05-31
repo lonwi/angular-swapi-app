@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SwapiService } from 'src/app/services/swapi.service';
+import { PlanetObject } from 'src/app/interfaces/planet';
+import { FilmObject } from 'src/app/interfaces/film';
+import { PersonObject } from 'src/app/interfaces/person';
 
 @Component({
   selector: 'app-planet',
@@ -10,7 +13,9 @@ import { SwapiService } from 'src/app/services/swapi.service';
 export class PlanetPage implements OnInit {
 
   id: string;
-  planet: any;
+  planet: PlanetObject;
+  films: FilmObject[] = [];
+  people: PersonObject[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +29,16 @@ export class PlanetPage implements OnInit {
 
   async loadData() {
     this.planet = await this.swapi.getPlanete(this.id);
+    this.planet.films.map(async (item) => {
+      const film = await this.swapi.get(item);
+      this.films.push(film);
+      return item;
+    });
+    this.planet.residents.map(async (item) => {
+      const person = await this.swapi.get(item);
+      this.people.push(person);
+      return item;
+    });
     console.log(this.planet);
     return this.planet;
   }

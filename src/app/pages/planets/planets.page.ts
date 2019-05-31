@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 import { IonInfiniteScroll, IonContent, IonList, Platform } from '@ionic/angular';
 import { SwapiService } from 'src/app/services/swapi.service';
 import { ApiResponseObject } from 'src/app/interfaces/api-response';
-
+import { PlanetObject } from 'src/app/interfaces/planet';
 
 @Component({
   selector: 'app-planets',
@@ -16,7 +16,7 @@ export class PlanetsPage implements OnInit, OnDestroy {
   @ViewChild(IonList, { read: ElementRef }) planetsList: ElementRef;
 
   apiResonse: ApiResponseObject;
-  planets: any[];
+  planets: PlanetObject[];
 
   constructor(
     private swapi: SwapiService,
