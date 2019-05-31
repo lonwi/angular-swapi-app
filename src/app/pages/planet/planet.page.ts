@@ -28,7 +28,7 @@ export class PlanetPage implements OnInit {
   }
 
   async loadData() {
-    this.planet = await this.swapi.getPlanete(this.id);
+    this.planet = await this.swapi.getPlanet(this.id);
     const films: FilmObject[] = [];
     Promise.all(
       this.planet.films.map(async (item) => {
@@ -47,6 +47,10 @@ export class PlanetPage implements OnInit {
     ).then(() => this.people = people);
     console.log(this.planet);
     return this.planet;
+  }
+
+  isNumber(value: any): boolean {
+    return !isNaN(value) ? true : false;
   }
 
 }

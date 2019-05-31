@@ -31,17 +31,17 @@
 
       <ion-col size="12">
         <ion-text color="secondary"><strong>Climate:&nbsp;</strong></ion-text>
-        <ion-text text-capitalize>{{planet.climate ? planet.climate : 'No Data'}}</ion-text>
+        <ion-text text-capitalize>{{planet.climate ? planet.climate : 'Unknown'}}</ion-text>
       </ion-col>
 
       <ion-col size="12">
         <ion-text color="secondary"><strong>Diameter:&nbsp;</strong></ion-text>
-        <ion-text text-capitalize>{{planet.diameter ? (planet.diameter | number) : 'No Data' }}</ion-text>
+        <ion-text text-capitalize>{{ isNumber(planet.population) ? (planet.diameter | number) + 'km' : 'Unknown' }}</ion-text>
       </ion-col>
 
       <ion-col size="12">
         <ion-text color="secondary"><strong>Gravity:&nbsp;</strong></ion-text>
-        <ion-text text-capitalize>{{planet.gravity ? planet.gravity : 'No Data'}}</ion-text>
+        <ion-text text-capitalize>{{planet.gravity ? planet.gravity : 'Unknown'}}</ion-text>
       </ion-col>
 
       <ion-col size="12">
@@ -49,20 +49,20 @@
         <ion-spinner *ngIf="!films" color="primary" class="ion-spinner-small"></ion-spinner>
         <ng-container *ngIf="films">
           <ng-container *ngFor="let film of films; let last = last;">
-            <a routerLink="/characters/{{film.url | idFromUrl}}" routerDirection="forward">
+            <a routerLink="/movies/{{film.url | idFromUrl}}" routerDirection="forward">
               <ion-text>{{film.title}}</ion-text>
             </a>
             <ion-text *ngIf="!last">, </ion-text>
           </ng-container>
           <ng-container *ngIf="!films.length">
-            <ion-text>Not Known</ion-text>
+            <ion-text>Unknown</ion-text>
           </ng-container>
         </ng-container>
       </ion-col>
 
       <ion-col size="12">
         <ion-text color="secondary"><strong>Population:&nbsp;</strong></ion-text>
-        <ion-text>{{planet.population ? (planet.population | number) : 'No Data'}}</ion-text>
+        <ion-text>{{ isNumber(planet.population) ? (planet.population | number) : 'Unknown'}}</ion-text>
       </ion-col>
 
       <ion-col size="12">
@@ -76,14 +76,14 @@
             <ion-text *ngIf="!last">, </ion-text>
           </ng-container>
           <ng-container *ngIf="!people.length">
-            <ion-text>Not Known</ion-text>
+            <ion-text>Unknown</ion-text>
           </ng-container>
         </ng-container>
       </ion-col>
 
       <ion-col size="12">
         <ion-text color="secondary"><strong>Terrain:&nbsp;</strong></ion-text>
-        <ion-text text-capitalize>{{planet.terrain ? planet.terrain : 'No Data'}}</ion-text>
+        <ion-text text-capitalize>{{planet.terrain ? planet.terrain : 'Unknown'}}</ion-text>
       </ion-col>
 
     </ion-row>
