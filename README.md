@@ -12,11 +12,8 @@ Run npm install
 
 ## App Features
 
-Firebase Integration 
-Avatar change
-Theme change
-Lightsaber mode
-Fan Chat
+REST API Integration 
+Progressive Web App
 
 ## Credits
 
