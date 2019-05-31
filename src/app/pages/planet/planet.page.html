@@ -31,7 +31,7 @@
 
       <ion-col size="12">
         <ion-text color="secondary"><strong>Climate:&nbsp;</strong></ion-text>
-        <ion-text text-capitalize>{{planet.climate}}</ion-text>
+        <ion-text text-capitalize>{{planet.climate ? planet.climate : 'No Data'}}</ion-text>
       </ion-col>
 
       <ion-col size="12">
@@ -83,7 +83,7 @@
 
       <ion-col size="12">
         <ion-text color="secondary"><strong>Terrain:&nbsp;</strong></ion-text>
-        <ion-text text-capitalize>{{planet.terrain}}</ion-text>
+        <ion-text text-capitalize>{{planet.terrain ? planet.terrain : 'No Data'}}</ion-text>
       </ion-col>
 
     </ion-row>
